@@ -23,3 +23,17 @@ Instalacion del paquete que requeriremos
 ## TIP PARA TENER EL HISTORIAL DE COMANDOS
 
 history
+
+## Para correr el programa
+
+Solo en la maquina local:
+
+```
+flask run
+```
+
+Desde cualquier maquina conectada a la misma red local
+
+```
+flask run -h 0.0.0.0
+```
