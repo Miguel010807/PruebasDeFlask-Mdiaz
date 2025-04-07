@@ -8,7 +8,8 @@ app = Flask(__name__)
 
 
 def Hola():
- url_hola = url_for("Hola")
+ #         "Aca va el nombre del DEF"
+ url_hola = url_for("Adios")
 
  return f"""
  <a href="{url_hola}">Hola</a>
