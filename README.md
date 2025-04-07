@@ -37,3 +37,8 @@ Desde cualquier maquina conectada a la misma red local
 ```
 flask run -h 0.0.0.0
 ```
+
+Para poder modificar sin necesidad de cerrar la pagina
+```
+flask run -h 0.0.0.0 --debug
+```
