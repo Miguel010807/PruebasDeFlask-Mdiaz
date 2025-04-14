@@ -1,8 +1,56 @@
 from flask import Flask, url_for
+import sqlite3
 from random import randint
+
 
 app = Flask(__name__)
 
+db = None
+def abrirConexion():
+   global db
+   db = sqlite3.connect("instance/datos.sqlite")
+
+def dict_factory(cursor, row):
+   """Arma un diccionario con los valores de la fila."""
+   fields = [column[0] for column in cursor.description]
+   return {key: value for key, value in zip(fields, row)}
+
+def cerrarConexion():
+   global db
+   db.close
+   db.row_factory = dict_factory
+
+@app.route("/test-db")
+def testDB():
+   abrirConexion()
+   cursor = db.cursor()
+   cursor.execute("SELECT COUNT(*) AS cant FROM usuarios")
+   res = cursor.fetchone
+   registros = res["cant"]
+   cerrarConexion()
+   return f"hay {registros} registros en la tabla usuarios"
+
+@app.route("/crear-usuario") #Esta pagina esta sin argumentos
+def testCrear():
+   nombre = "Tomi"
+   email = "tomi@etec.uba.ar"
+   abrirConexion()
+   cursor = db.cursor()
+   cursor.execute("SINSERT INTO usuarios (usuario, emial) VALUES (nombre, email)")
+   res = cursor.fetchone
+   registros = res["cant"]
+   cerrarConexion()
+   return f"hay {registros} registros en la tabla usuarios"
+
+@app.route("/crear-usuario-arg/<string:nombre>/<string:email>") #este pagina esta con Argumentos( nombre y email)
+def testCrearXArgu(nombre,email):
+   abrirConexion()
+   cursor = db.cursor()
+   consulta = "INSERT INTO usuarios (usuario, email) VALUES (?, ?)"
+   cursor.execute(consulta,(nombre, email))
+   db.commit
+   cerrarConexion()
+   return f"hay un resgistro agregado( {nombre}, {email})"
 
 @app.route('/Hola/ida')
 

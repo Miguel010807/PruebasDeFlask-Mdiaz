@@ -42,3 +42,15 @@ Para poder modificar sin necesidad de cerrar la pagina
 ```
 flask run -h 0.0.0.0 --debug
 ```
+
+Para agregar datos en SQL desde la terminal
+```
+INSERT INTO nombre de la table(nombre de la columna, nombre de la columna2) VALUES (´Miguel´, ´mdiaz@etec.uba.ar´)
+```
+
+Para subirlo de una al SQL
+```
+db.commint
+```
+
+
