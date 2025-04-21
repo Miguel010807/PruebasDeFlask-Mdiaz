@@ -1,4 +1,4 @@
-from flask import Flask, url_for
+from flask import Flask, render_template, url_for
 import sqlite3
 from random import randint
 
@@ -6,14 +6,16 @@ from random import randint
 app = Flask(__name__)
 
 db = None
-def abrirConexion():
-   global db
-   db = sqlite3.connect("instance/datos.sqlite")
 
 def dict_factory(cursor, row):
    """Arma un diccionario con los valores de la fila."""
    fields = [column[0] for column in cursor.description]
    return {key: value for key, value in zip(fields, row)}
+
+def abrirConexion():
+   global db
+   db = sqlite3.connect("instance/datos.sqlite")
+   db.row_factory = dict_factory
 
 def cerrarConexion():
    global db
@@ -75,3 +77,25 @@ def sxn(nombre):
 def dado(caras):
     n = randint(1,caras)
     return f'<p>Tire un dado de {caras} caras, salio {n}<p>'
+
+
+@app.route("/mostrar-datos-plantilla/<int:id>")
+def datos_plantilla(id):
+    abrirConexion()
+    cursor = db.cursor()
+    cursor.execute("SELECT id, usuario, email FROM usuarios WHERE id = ?; ", (id,) )
+    res = cursor.fetchone()
+    cerrarConexion()
+    usuario = None
+    email = None
+    if res != None:
+       usuario= res["usuario"]
+       email = res["email"]
+    return render_template("datosjuntos.html", id=id, usuario=usuario, email=email)    
+
+
+
+
+
+
+

@@ -45,12 +45,18 @@ flask run -h 0.0.0.0 --debug
 
 Para agregar datos en SQL desde la terminal
 ```
-INSERT INTO nombre de la table(nombre de la columna, nombre de la columna2) VALUES (´Miguel´, ´mdiaz@etec.uba.ar´)
+INSERT INTO nombre de la table(nombre de la columna, nombre de la columna2) VALUES ('Miguel', 'mdiaz@etec.uba.ar');
 ```
 
 Para subirlo de una al SQL
 ```
 db.commint
 ```
+
+Para poder Modificar datos en SQL desde la terminal
+```
+UPDATE (nombre de la tabla) SET usuario= ('el dato ya editado') WHERE (el Id o el dato que queremos editar);
+```
+
 
 
