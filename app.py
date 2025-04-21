@@ -91,7 +91,10 @@ def datos_plantilla(id):
     if res != None:
        usuario= res["usuario"]
        email = res["email"]
-    return render_template("datosjuntos.html", id=id, usuario=usuario, email=email)    
+    return render_template("datosjuntos.html", id=id, usuario=usuario, email=email)   
+
+
+##DSADASDASDASDAS
 
 
 
