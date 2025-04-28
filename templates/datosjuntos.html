@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <title>Pagina de prueba</title>
-</head>
-<body>
+  </head>
+  <body>
     {% if usuario == None %}
-        <h1 style="color: brown;">No existe el usuario {{id }}</h1>
+    <h1 style="color: brown">No existe el usuario {{id }}</h1>
     {% else %}
-        <h1>Usuario con id: {{id}}</h1>
-        <h2>{{usuario}}  ({{email}})</h2>
+    <h1>Usuario con id: {{id}}</h1>
+    <h2>
+      Nombre: {{usuario}} <br />
+      Email: {{email}} <br />
+      Telefono: {{telefono}} <br />
+      Direccion: {{direccion}}
+    </h2>
     {% endif %}
-
-</body>
+  </body>
 </html>
